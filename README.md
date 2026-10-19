@@ -1,9 +1,12 @@
-# Your Project's Title...
-Your project's description...
+# Rittal Edge Delivery Services
+
+An AEM Edge Delivery Services project based on the Adobe EDS Boilerplate. The initial migration targets the German Rittal site at https://www.rittal.com/de-de/.
+
+The initial scope is limited to the homepage and its first-level areas: Online Shop, Produkte, Software, Lösungen, Konfiguration, Services, and Unternehmen. Do not treat this as authorization to import deeper pages.
 
 ## Environments
-- Preview: https://main--{repo}--{owner}.aem.page/
-- Live: https://main--{repo}--{owner}.aem.live/
+- Preview: https://main--rittal--mica1973.aem.page/
+- Live: https://main--rittal--mica1973.aem.live/
 
 ## Documentation
 
