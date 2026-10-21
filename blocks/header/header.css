@@ -1,273 +1,465 @@
-/* header and nav layout */
+/* header and nav layout — mobile first; the two-row desktop header starts at 1200px */
+.header {
+  --header-icon-inbox: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.6'%3E%3Crect x='2.5' y='5.5' width='19' height='13'/%3E%3Cpath d='M2.5 6.5l9.5 7 9.5-7'/%3E%3C/svg%3E");
+  --header-icon-career: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.6'%3E%3Ccircle cx='8' cy='5' r='2.5'/%3E%3Cpath d='M4 21v-7a4 4 0 0 1 8 0v7M13 18l3-4 3 2 3-5'/%3E%3C/svg%3E");
+  --header-icon-feedback: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.6'%3E%3Cpath d='M2.5 4.5h19v12h-11l-5 4v-4h-3z'/%3E%3Cpath d='M7 10.5h.01M12 10.5h.01M17 10.5h.01' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
+  --header-icon-blog: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.6'%3E%3Cpath d='M4 3.5h11l4 4v13H4z'/%3E%3Cpath d='M7.5 9h8M7.5 12.5h8M7.5 16h5'/%3E%3C/svg%3E");
+  --header-icon-globe: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.6'%3E%3Ccircle cx='12' cy='12' r='9.5'/%3E%3Cpath d='M2.5 12h19M12 2.5c3 3 3 16 0 19M12 2.5c-3 3-3 16 0 19'/%3E%3C/svg%3E");
+  --header-icon-profile: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2'%3E%3Ccircle cx='12' cy='7.5' r='4'/%3E%3Cpath d='M3.5 21.5v-2a5 5 0 0 1 5-5h7a5 5 0 0 1 5 5v2z'/%3E%3C/svg%3E");
+  --header-icon-cart: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2'%3E%3Cpath d='M1.5 2.5h3l2.7 12.5h11.6l2.2-8.5H6'/%3E%3Ccircle cx='9' cy='19.5' r='1.6'/%3E%3Ccircle cx='17' cy='19.5' r='1.6'/%3E%3C/svg%3E");
+  --header-icon-search: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8'%3E%3Ccircle cx='10' cy='10' r='7'/%3E%3Cpath d='M15.2 15.2l6.3 6.3'/%3E%3C/svg%3E");
+  --header-icon-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2'%3E%3Cpath d='M5 9l7 7 7-7'/%3E%3C/svg%3E");
+  --header-bar-height: 58px;
+}
+
 header .nav-wrapper {
-  background-color: var(--background-color);
-  width: 100%;
-  z-index: 2;
   position: fixed;
+  inset: 0 0 auto;
+  z-index: 10;
+  background-color: #000;
+  color: #fff;
 }
 
 header nav {
   box-sizing: border-box;
-  display: grid;
-  grid-template:
-    'hamburger brand tools' var(--nav-height)
-    'sections sections sections' 1fr / auto 1fr auto;
+  display: flex;
   align-items: center;
-  gap: 0 24px;
-  margin: auto;
-  max-width: 1248px;
   height: var(--nav-height);
-  padding: 0 24px;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 0 0 20px;
   font-family: var(--body-font-family);
 }
 
-header nav[aria-expanded='true'] {
-  grid-template:
-    'hamburger brand' var(--nav-height)
-    'sections sections' 1fr
-    'tools tools' var(--nav-height) / auto 1fr;
-  overflow-y: auto;
-  min-height: 100dvh;
-}
-
-@media (width >= 900px) {
-  header .nav-wrapper {
-    position: relative;
-  }
-
-  header nav {
-    display: flex;
-    justify-content: space-between;
-    gap: 0 32px;
-    max-width: 1264px;
-    padding: 0 32px;
-  }
-}
-
-header nav p {
+header nav ul {
   margin: 0;
-  line-height: 1;
+  padding: 0;
+  list-style: none;
 }
 
 header nav a:any-link {
-  color: currentcolor;
+  color: #fff;
+  text-decoration: none;
 }
 
-/* hamburger */
-header nav .nav-hamburger {
-  grid-area: hamburger;
-  height: 22px;
-  display: flex;
-  align-items: center;
+header nav a:hover {
+  text-decoration: none;
 }
 
-header nav .nav-hamburger button {
-  height: 22px;
+header nav a:focus-visible,
+header nav button:focus-visible,
+header nav input:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* brand */
+header nav .nav-brand {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+header nav .nav-brand p {
   margin: 0;
-  border: 0;
-  border-radius: 0;
+  line-height: 0;
+}
+
+header nav .nav-brand img {
+  display: block;
+  width: auto;
+  height: 38px;
+}
+
+header nav .nav-brand .nav-brand-full {
+  display: none;
+}
+
+/* search: icon link on compact screens */
+header nav .nav-search {
+  flex: 0 0 auto;
+}
+
+header nav .nav-search-form {
+  display: none;
+}
+
+header nav .nav-search-link,
+header nav .nav-hamburger button {
+  position: relative;
+  display: block;
+  width: 54px;
+  height: 54px;
+  margin: 0;
   padding: 0;
-  background-color: var(--background-color);
-  color: inherit;
-  overflow: initial;
-  text-overflow: initial;
-  white-space: initial;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+header nav .nav-search-link::before {
+  content: '';
+  position: absolute;
+  inset: 13px;
+  background-color: currentcolor;
+  mask: var(--header-icon-search) center / contain no-repeat;
+}
+
+/* hamburger: three bars that morph into a cross */
+header nav .nav-hamburger {
+  flex: 0 0 auto;
+  margin-inline-end: 8px;
 }
 
 header nav .nav-hamburger-icon,
 header nav .nav-hamburger-icon::before,
 header nav .nav-hamburger-icon::after {
-  box-sizing: border-box;
-  display: block;
-  position: relative;
-  width: 20px;
+  position: absolute;
+  left: 13px;
+  width: 28px;
+  height: 3px;
+  border-radius: 1px;
+  background-color: currentcolor;
+  transition: transform 0.25s ease, top 0.25s ease, background-color 0.25s ease;
+}
+
+header nav .nav-hamburger-icon {
+  top: 26px;
 }
 
 header nav .nav-hamburger-icon::before,
 header nav .nav-hamburger-icon::after {
   content: '';
-  position: absolute;
-  background: currentcolor;
+  left: 0;
 }
 
-header nav[aria-expanded='false'] .nav-hamburger-icon,
-header nav[aria-expanded='false'] .nav-hamburger-icon::before,
-header nav[aria-expanded='false'] .nav-hamburger-icon::after {
-  height: 2px;
-  border-radius: 2px;
-  background: currentcolor;
+header nav .nav-hamburger-icon::before {
+  top: -9px;
 }
 
-header nav[aria-expanded='false'] .nav-hamburger-icon::before {
-  top: -6px;
-}
-
-header nav[aria-expanded='false'] .nav-hamburger-icon::after {
-  top: 6px;
+header nav .nav-hamburger-icon::after {
+  top: 9px;
 }
 
 header nav[aria-expanded='true'] .nav-hamburger-icon {
-  height: 22px;
+  background-color: transparent;
 }
 
-header nav[aria-expanded='true'] .nav-hamburger-icon::before,
-header nav[aria-expanded='true'] .nav-hamburger-icon::after {
-  top: 3px;
-  left: 1px;
+header nav[aria-expanded='true'] .nav-hamburger-icon::before {
+  top: 0;
   transform: rotate(45deg);
-  transform-origin: 2px 1px;
-  width: 24px;
-  height: 2px;
-  border-radius: 2px;
 }
 
 header nav[aria-expanded='true'] .nav-hamburger-icon::after {
-  top: unset;
-  bottom: 3px;
+  top: 0;
   transform: rotate(-45deg);
 }
 
-@media (width >= 900px) {
-  header nav .nav-hamburger {
-    display: none;
-    visibility: hidden;
-  }
-}
-
-/* brand */
-header .nav-brand {
-  grid-area: brand;
-  flex-basis: 128px;
-  font-size: var(--heading-font-size-s);
-  font-weight: 700;
-  line-height: 1;
-}
-
-header nav .nav-brand img {
-  width: 128px;
-  height: auto;
-}
-
-/* sections */
+/* main menu: full-screen white panel on compact screens */
 header nav .nav-sections {
-  grid-area: sections;
-  flex: 1 1 auto;
   display: none;
-  visibility: hidden;
 }
 
 header nav[aria-expanded='true'] .nav-sections {
+  position: fixed;
+  inset: var(--nav-height) 0 0;
+  z-index: 2;
   display: block;
-  visibility: visible;
-  align-self: start;
+  padding: 26px 20px;
+  overflow-y: auto;
+  background-color: #fff;
 }
 
-header nav .nav-sections ul {
-  list-style: none;
-  padding-left: 0;
-  font-size: var(--body-font-size-s);
+header nav .nav-sections a {
+  display: block;
+  padding: 14px 0;
+  color: #000;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 29px;
 }
 
-header nav .nav-sections ul > li {
-  font-weight: 500;
+header nav .nav-sections a:hover {
+  color: var(--brand-color, #e50043);
 }
 
-header nav .nav-sections .nav-drop > button {
-  all: unset;
-  display: inline-block;
-  position: relative;
-  padding-right: 16px;
-  cursor: pointer;
+/* meta links + shop tools: fixed icon bar at the bottom of compact screens */
+header nav .nav-bar {
+  position: fixed;
+  inset: auto 0 0;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  height: var(--header-bar-height);
+  padding: 0 10px;
+  background-color: #000;
 }
 
-header nav .nav-sections .nav-drop > button::after {
-  content: '';
-  position: absolute;
-  top: 0.5em;
-  right: 2px;
-  transform: rotate(135deg);
-  width: 6px;
-  height: 6px;
-  border: 2px solid currentcolor;
-  border-radius: 0 1px 0 0;
-  border-width: 2px 2px 0 0;
+header nav .nav-bar ul,
+header nav .nav-bar .nav-meta,
+header nav .nav-bar .nav-tools {
+  display: contents;
 }
 
-header nav .nav-sections .nav-drop > button[aria-expanded='true']::after {
-  top: unset;
-  bottom: 0.5em;
-  transform: rotate(315deg);
+header nav .nav-bar li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  font-size: 13px;
 }
 
-header nav .nav-sections .nav-drop > button:focus-visible {
-  outline: 2px solid currentcolor;
-  outline-offset: 2px;
-}
-
-header nav .nav-sections ul > li > ul {
-  margin-top: 0;
-}
-
-header nav .nav-sections ul > li > ul > li {
-  font-weight: 400;
-}
-
-header nav .nav-sections .nav-drop > button[aria-expanded='false'] + ul {
+/* Kundenmagazin is only part of the desktop meta row */
+header nav .nav-bar li:has(img) {
   display: none;
 }
 
-@media (width >= 900px) {
-  header nav .nav-sections {
+header nav .nav-bar li a:any-link {
+  position: relative;
+  display: block;
+  width: 40px;
+  height: 44px;
+  overflow: hidden;
+  color: transparent;
+  white-space: nowrap;
+}
+
+header nav .nav-bar li a::before,
+header nav .nav-bar li[data-icon='locale']::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  background-color: #fff;
+  mask: center / contain no-repeat;
+}
+
+header nav .nav-bar li[data-icon='locale'] {
+  position: relative;
+  align-self: center;
+  width: 40px;
+  height: 44px;
+  overflow: hidden;
+  color: transparent;
+  white-space: nowrap;
+}
+
+header nav .nav-bar li[data-icon='kontakt'] a::before { mask-image: var(--header-icon-inbox); }
+header nav .nav-bar li[data-icon='karriere'] a::before { mask-image: var(--header-icon-career); }
+header nav .nav-bar li[data-icon='feedback'] a::before { mask-image: var(--header-icon-feedback); }
+header nav .nav-bar li[data-icon='blog'] a::before { mask-image: var(--header-icon-blog); }
+header nav .nav-bar li[data-icon='locale']::before { mask-image: var(--header-icon-globe); }
+header nav .nav-bar li[data-icon='anmelden'] a::before { mask-image: var(--header-icon-profile); }
+header nav .nav-bar li[data-icon='warenkorb'] a::before { mask-image: var(--header-icon-cart); }
+
+@media (width >= 1200px) {
+  header nav {
+    /* two independent rows: logo + meta row (60px), main menu + search (80px) */
+    display: grid;
+    grid-template-rows: 60px 80px;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: center;
+    padding: 0 20px;
+  }
+
+  header nav .nav-brand {
+    grid-area: 1 / 1;
+    place-self: start;
+    padding: 24px 0 0 12px;
+  }
+
+  header nav .nav-brand img {
+    height: 47px;
+  }
+
+  header nav .nav-brand .nav-brand-full {
     display: block;
-    visibility: visible;
-    white-space: nowrap;
+  }
+
+  header nav .nav-brand .nav-brand-compact {
+    display: none;
+  }
+
+  header nav .nav-hamburger {
+    display: none;
+  }
+
+  /* main menu: horizontal links in the second row */
+  header nav .nav-sections,
+  header nav[aria-expanded='true'] .nav-sections {
+    position: static;
+    grid-area: 2 / 1;
+    justify-self: start;
+    margin-inline-start: 18px;
+    display: block;
+    padding: 0;
+    overflow: visible;
+    background: none;
   }
 
   header nav .nav-sections ul {
     display: flex;
-    gap: 24px;
-    margin: 0;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li {
-    flex: 0 1 auto;
-    position: relative;
+  header nav .nav-sections a {
+    display: flex;
+    align-items: center;
+    padding: 5px 12px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 35px;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li > ul {
+  header nav .nav-sections a:hover {
+    color: #b4b4b9;
+  }
+
+  header nav .nav-sections li:first-child a {
+    padding-inline-start: 0;
+  }
+
+  /* search: white input box with magnifier */
+  header nav .nav-search {
+    grid-area: 2 / 1;
+    justify-self: end;
+    display: flex;
+  }
+
+  header nav .nav-search-link {
     display: none;
+  }
+
+  header nav .nav-search-form {
+    display: flex;
+    align-items: center;
+    width: clamp(260px, 23.2vw, 334px);
+    margin: 0;
+    height: 44px;
+    background-color: #fff;
+  }
+
+  header nav .nav-search-submit {
     position: relative;
+    flex: 0 0 44px;
+    height: 44px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #000;
+    cursor: pointer;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li > button[aria-expanded='true'] + ul {
-    display: block;
-    position: absolute;
-    left: -24px;
-    width: 200px;
-    top: 150%;
-    padding: 16px;
-    background-color: var(--light-color);
-    white-space: initial;
-  }
-
-  header nav .nav-sections .default-content-wrapper > ul > li > ul::before {
+  header nav .nav-search-submit::before {
     content: '';
     position: absolute;
-    top: -8px;
-    left: 16px;
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid var(--light-color);
+    inset: 12px 11px 12px 13px;
+    background-color: currentcolor;
+    mask: var(--header-icon-search) center / contain no-repeat;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
-    padding: 8px 0;
+  header nav .nav-search-form input {
+    flex: 1 1 auto;
+    min-width: 0;
+    box-sizing: border-box;
+    height: 44px;
+    margin: 0;
+    padding: 12px 0;
+    border: 0;
+    background-color: #fff;
+    color: #000;
+    font-size: 16px;
+    line-height: 20px;
   }
-}
 
-/* tools */
-header nav .nav-tools {
-  grid-area: tools;
+  header nav .nav-search-form input::placeholder {
+    color: #9a9a9e;
+  }
+
+  header nav .nav-search-form input:focus-visible {
+    outline: 0;
+  }
+
+  header nav .nav-search-form:focus-within {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+  }
+
+  /* meta row: text links, separators, locale label and shop icons */
+  header nav .nav-bar {
+    position: static;
+    grid-area: 1 / 1;
+    justify-self: end;
+    align-items: center;
+    height: 60px;
+    padding: 0;
+    background: none;
+  }
+
+  header nav .nav-bar li,
+  header nav .nav-bar li:has(img) {
+    display: flex;
+    min-width: 0;
+  }
+
+  header nav .nav-bar li a:any-link {
+    display: flex;
+    align-items: center;
+    width: auto;
+    height: 40px;
+    margin: 0 13px;
+    padding: 0;
+    overflow: visible;
+    color: #fff;
+    line-height: 13px;
+  }
+
+  header nav .nav-bar li a:hover {
+    color: #b4b4b9;
+  }
+
+  header nav .nav-meta li a::before {
+    content: none;
+  }
+
+  header nav .nav-meta li a img {
+    width: 35px;
+    height: 18px;
+    margin-inline-end: 8px;
+  }
+
+  /* group separators */
+  header nav .nav-meta li:first-child,
+  header nav .nav-meta li:last-child,
+  header nav .nav-bar li[data-icon='locale'] {
+    margin-inline-end: 12px;
+    padding-inline-end: 12px;
+    border-inline-end: 1px solid #3b3b3e;
+  }
+
+  header nav .nav-bar li[data-icon='locale'] {
+    width: auto;
+    height: 40px;
+    padding-inline-start: 34px;
+    color: #fff;
+  }
+
+  header nav .nav-bar li[data-icon='locale']::before {
+    inset: 9px auto 9px 0;
+    width: 22px;
+  }
+
+  /* login and cart are icon-only buttons on desktop */
+  header nav .nav-tools li[data-icon='anmelden'] a,
+  header nav .nav-tools li[data-icon='warenkorb'] a {
+    width: 49px;
+    margin: 0;
+    padding: 0;
+    color: transparent;
+  }
+
+  header nav .nav-tools li[data-icon='anmelden'] a::before,
+  header nav .nav-tools li[data-icon='warenkorb'] a::before {
+    inset: 8px 12px;
+  }
 }

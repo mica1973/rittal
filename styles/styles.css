@@ -50,8 +50,16 @@
   --content-max-width: 1440px;
   --content-padding: 20px;
 
-  /* nav height */
-  --nav-height: 64px;
+  /* nav height (compact header; two-row header from 1200px) */
+  --nav-height: 70px;
+  --nav-bottom-bar-height: 58px;
+}
+
+@media (width >= 1200px) {
+  :root {
+    --nav-height: 140px;
+    --nav-bottom-bar-height: 0px;
+  }
 }
 
 /* fallback fonts */
@@ -99,8 +107,15 @@ body.appear {
   display: block;
 }
 
+/* black like the rittal header, so the reserved space never flashes white before the nav loads */
 header {
   height: var(--nav-height);
+  background-color: #000;
+}
+
+/* keep the page end clear of the fixed meta/shop icon bar on compact screens */
+footer {
+  padding-bottom: var(--nav-bottom-bar-height);
 }
 
 header .header,
