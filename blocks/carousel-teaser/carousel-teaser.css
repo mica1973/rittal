@@ -1,0 +1,214 @@
+.carousel-teaser {
+  --carousel-teaser-gap: 40px;
+  --carousel-teaser-per-view: 1;
+
+  position: relative;
+  margin-top: 40px;
+  color: #fff;
+}
+
+.carousel-teaser .carousel-teaser-track {
+  position: relative;
+  display: flex;
+  gap: var(--carousel-teaser-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.carousel-teaser .carousel-teaser-track::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-teaser .carousel-teaser-track:focus-visible {
+  outline: 2px solid currentcolor;
+  outline-offset: 4px;
+}
+
+.carousel-teaser .carousel-teaser-item {
+  display: flex;
+  flex: 0 0 calc((100% - (var(--carousel-teaser-per-view) - 1) * var(--carousel-teaser-gap)) / var(--carousel-teaser-per-view));
+  flex-direction: column;
+  min-width: 0;
+  background-color: #000;
+  scroll-snap-align: start;
+}
+
+.carousel-teaser .carousel-teaser-item-image {
+  line-height: 0;
+}
+
+.carousel-teaser .carousel-teaser-item-image a {
+  display: block;
+}
+
+/* rittal teaser images are 16:10 and shown uncropped */
+.carousel-teaser .carousel-teaser-item-image img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: contain;
+}
+
+.carousel-teaser .carousel-teaser-item-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding-top: 20px;
+}
+
+.carousel-teaser .carousel-teaser-item-body > * {
+  margin: 0 0 10px;
+}
+
+/* date / reference name above the headline, and the teaser text */
+.carousel-teaser .carousel-teaser-item-body > p:not(.button-wrapper) {
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.carousel-teaser .carousel-teaser-item-body h3 {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.carousel-teaser .carousel-teaser-item-body h3 a:any-link {
+  color: inherit;
+}
+
+.carousel-teaser .carousel-teaser-item-body h3 a:hover {
+  text-decoration: underline;
+}
+
+/* push the CTA to the bottom so buttons align across cards */
+.carousel-teaser .carousel-teaser-item-body .button-wrapper:last-child {
+  margin: auto 0 0;
+  padding-top: 20px;
+}
+
+.carousel-teaser .carousel-teaser-item-body .button {
+  display: flex;
+  width: 100%;
+}
+
+.carousel-teaser .carousel-teaser-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.carousel-teaser .carousel-teaser-controls[hidden] {
+  display: none;
+}
+
+.carousel-teaser .carousel-teaser-indicators {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.carousel-teaser .carousel-teaser-indicator button {
+  position: relative;
+  display: block;
+  width: 44px;
+  height: 40px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.carousel-teaser .carousel-teaser-indicator button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 7px;
+  width: 30px;
+  height: 2px;
+  background-color: rgb(255 255 255 / 35%);
+}
+
+.carousel-teaser .carousel-teaser-indicator button[aria-current='true']::before {
+  height: 3px;
+  background-color: #fff;
+}
+
+.carousel-teaser .carousel-teaser-prev,
+.carousel-teaser .carousel-teaser-next {
+  position: relative;
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.carousel-teaser .carousel-teaser-prev:disabled,
+.carousel-teaser .carousel-teaser-next:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.carousel-teaser .carousel-teaser-prev::after,
+.carousel-teaser .carousel-teaser-next::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  border: 2px solid currentcolor;
+  border-bottom: 0;
+  border-left: 0;
+  transform: translate(-30%, -50%) rotate(-135deg);
+}
+
+.carousel-teaser .carousel-teaser-next::after {
+  transform: translate(-70%, -50%) rotate(45deg);
+}
+
+.carousel-teaser button:focus-visible {
+  outline: 2px solid currentcolor;
+  outline-offset: -2px;
+}
+
+@media (width >= 600px) {
+  .carousel-teaser {
+    --carousel-teaser-per-view: 2;
+  }
+}
+
+@media (width >= 900px) {
+  .carousel-teaser {
+    --carousel-teaser-per-view: 3;
+  }
+}
+
+/* four teasers per view on wide screens, as on rittal.com */
+@media (width >= 1200px) {
+  .carousel-teaser {
+    --carousel-teaser-per-view: 4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel-teaser .carousel-teaser-track {
+    scroll-behavior: auto;
+  }
+}

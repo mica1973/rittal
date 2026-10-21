@@ -1,0 +1,24 @@
+{
+  "variantName": "tabs-product",
+  "baseBlock": "tabs",
+  "canonicalModel": "standalone",
+  "sourceUrl": "https://www.rittal.com/de-de/",
+  "visualCharacteristics": {
+    "purpose": "Product area gallery: one large panel per product area, switched by a text tab strip",
+    "layout": "panel above, tab strip with prev/next arrows below; image and text side by side on desktop, alternating image side panel by panel",
+    "notes": "used in dark sections; ARIA tabs pattern with roving tabindex, arrow/Home/End keys"
+  },
+  "contentPattern": {
+    "structure": "cell 1: tab label (text); cell 2: product image, heading, text paragraph, CTA link (bold = primary button)",
+    "rows": "one row per tab"
+  },
+  "options": [
+    {
+      "class": "image-right",
+      "label": "Image right on first panel"
+    }
+  ],
+  "memberVariantIds": [],
+  "usage": "'Unsere Produkte fuer die Industrie' and 'Unsere Produkte fuer die IT' sections on the homepage.",
+  "reuseGuidance": "Use for switching between a handful of product areas with one image and CTA each. Add the image-right option when the first panel should show the image on the right."
+}

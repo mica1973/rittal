@@ -1,0 +1,20 @@
+{
+  "variantName": "carousel-stage",
+  "baseBlock": "carousel",
+  "canonicalModel": "standalone",
+  "sourceUrl": "https://www.rittal.com/de-de/",
+  "visualCharacteristics": {
+    "purpose": "Full-bleed rotating stage at the top of the page",
+    "layout": "one slide visible, cross-fade between slides; background image with overlaid text box",
+    "controls": "prev/next arrows and bullet indicators",
+    "notes": "no autoplay; keyboard arrows switch slides; first slide image loads eagerly for LCP"
+  },
+  "contentPattern": {
+    "structure": "cell 1: image (alone); cell 2: optional eyebrow paragraph, heading (H2), text paragraph, one or two CTA links (bold = primary, italic = secondary)",
+    "rows": "one row per slide"
+  },
+  "options": [],
+  "memberVariantIds": [],
+  "usage": "Homepage stage / Bühne with several campaign slides.",
+  "reuseGuidance": "Use for full-width rotating hero content. For a single static hero use the hero block; for several visible teaser cards use carousel-teaser."
+}

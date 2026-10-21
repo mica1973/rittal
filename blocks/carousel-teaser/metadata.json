@@ -1,0 +1,20 @@
+{
+  "variantName": "carousel-teaser",
+  "baseBlock": "carousel",
+  "canonicalModel": "standalone",
+  "sourceUrl": "https://www.rittal.com/de-de/",
+  "visualCharacteristics": {
+    "purpose": "Horizontally scrolling slider of teaser cards (news, references)",
+    "layout": "1 / 2 / 3 cards visible (mobile / tablet / desktop), scroll-snap track",
+    "controls": "prev/next arrows and per-card indicators below the track",
+    "notes": "used in a dark section (section style 'dark'); CTA buttons align at card bottom"
+  },
+  "contentPattern": {
+    "structure": "cell 1: image (optionally linked); cell 2: eyebrow paragraph (date or label), linked heading, excerpt paragraph, CTA link (bold = primary button)",
+    "rows": "one row per teaser card"
+  },
+  "options": [],
+  "memberVariantIds": [],
+  "usage": "'Aktuelles' news and references slider on the homepage.",
+  "reuseGuidance": "Use when more teaser cards exist than fit in one row. For a static grid of cards use cards-teaser; for a full-bleed rotating stage use carousel-stage."
+}

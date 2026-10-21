@@ -1,0 +1,19 @@
+{
+  "variantName": "columns-banner",
+  "baseBlock": "columns",
+  "canonicalModel": "standalone",
+  "sourceUrl": "https://www.rittal.com/de-de/",
+  "visualCharacteristics": {
+    "purpose": "Horizontal promo banner: framed screenshot next to a short text and CTA",
+    "layout": "two columns side by side on desktop, stacked on mobile; image column wrapped in a frame hook for the decorative monitor",
+    "notes": "used in a section with style 'dark-gradient'; the monitor frame is decorative and is not authored"
+  },
+  "contentPattern": {
+    "structure": "cell 1: image; cell 2: text paragraph and CTA link (bold = primary button)",
+    "rows": "one row"
+  },
+  "options": [],
+  "memberVariantIds": [],
+  "usage": "'Unsere Software' banner on the homepage.",
+  "reuseGuidance": "Use for a single image + text promotional band. For generic multi-column layouts use columns."
+}

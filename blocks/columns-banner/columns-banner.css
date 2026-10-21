@@ -1,0 +1,116 @@
+.columns-banner {
+  color: #fff;
+}
+
+.columns-banner .columns-banner-row {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 40px 0 20px;
+}
+
+.columns-banner .columns-banner-row + .columns-banner-row {
+  margin-top: 24px;
+}
+
+.columns-banner .columns-banner-img-col {
+  align-self: center;
+  width: 100%;
+  max-width: 270px;
+  line-height: 0;
+}
+
+/* decorative monitor around the screenshot: bezel, chin and stand drawn in CSS */
+.columns-banner .columns-banner-frame {
+  position: relative;
+  margin-bottom: 64px;
+  padding: 4px 4px 44px;
+  border: 1px solid #6e6e75;
+  border-radius: 10px;
+  background: linear-gradient(#18181b 0, #18181b 70%, #3a393f 85%, #57565e 100%);
+  box-shadow: 0 0 0 1px #000;
+}
+
+.columns-banner .columns-banner-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+/* stand */
+.columns-banner .columns-banner-frame::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 26%;
+  height: 56px;
+  background: linear-gradient(#202024, #46454c);
+  clip-path: polygon(8% 0, 92% 0, 100% 100%, 0 100%);
+  transform: translateX(-50%);
+}
+
+/* foot */
+.columns-banner .columns-banner-frame::after {
+  content: '';
+  position: absolute;
+  top: calc(100% + 56px);
+  left: 50%;
+  width: 31%;
+  height: 6px;
+  border-radius: 0 0 3px 3px;
+  background: linear-gradient(#5d5c63, #2b2b30);
+  transform: translateX(-50%);
+}
+
+.columns-banner .columns-banner-text-col > * {
+  margin: 0;
+}
+
+.columns-banner .columns-banner-text-col p:not(.button-wrapper) {
+  margin-bottom: 40px;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.columns-banner .columns-banner-text-col .button-wrapper {
+  margin: 0;
+}
+
+.columns-banner .columns-banner-text-col .button {
+  display: flex;
+  width: 100%;
+}
+
+@media (width >= 900px) {
+  .columns-banner .columns-banner-row {
+    flex-direction: row;
+    align-items: center;
+    gap: 120px;
+    padding: 40px 0 60px;
+  }
+
+  .columns-banner .columns-banner-img-col {
+    flex: 0 0 min(437px, 32%);
+    max-width: none;
+  }
+
+  .columns-banner .columns-banner-text-col {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 16px 0 20px;
+  }
+
+  .columns-banner .columns-banner-text-col p:not(.button-wrapper) {
+    font-size: 22px;
+    line-height: 28px;
+  }
+
+  .columns-banner .columns-banner-text-col .button {
+    display: inline-flex;
+    width: 400px;
+    max-width: 100%;
+  }
+}

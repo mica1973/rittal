@@ -1,0 +1,19 @@
+{
+  "variantName": "cards-teaser",
+  "baseBlock": "cards",
+  "canonicalModel": "standalone",
+  "sourceUrl": "https://www.rittal.com/de-de/",
+  "visualCharacteristics": {
+    "purpose": "Static grid of teaser cards",
+    "layout": "2-up grid on tablet/desktop, stacked on mobile; image on top, body below, full-width CTA button at the bottom",
+    "notes": "used in grey and dark sections"
+  },
+  "contentPattern": {
+    "structure": "cell 1: image (optionally linked); cell 2: optional eyebrow paragraph, linked heading, text paragraph, CTA link (bold = primary button)",
+    "rows": "one row per card"
+  },
+  "options": [],
+  "memberVariantIds": [],
+  "usage": "'Andere Besucher haben sich angesehen' and 'Unsere Erfolge' teaser pairs on the homepage.",
+  "reuseGuidance": "Use for two or more static promotional teasers. Use carousel-teaser when items should scroll."
+}

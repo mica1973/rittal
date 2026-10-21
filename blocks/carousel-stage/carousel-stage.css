@@ -1,0 +1,271 @@
+.carousel-stage {
+  position: relative;
+  background-color: #000;
+  color: #fff;
+}
+
+.carousel-stage .carousel-stage-viewport {
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-stage .carousel-stage-slides {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* all slides share one grid cell and cross-fade */
+.carousel-stage .carousel-stage-slide {
+  grid-area: 1 / 1;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  box-sizing: border-box;
+  min-height: max(560px, calc(100svh - var(--nav-height, 64px)));
+  padding-bottom: 72px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s;
+}
+
+.carousel-stage .carousel-stage-slide.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.carousel-stage .carousel-stage-slide.no-image {
+  align-items: center;
+}
+
+.carousel-stage .carousel-stage-slide-image {
+  position: absolute;
+  inset: 0;
+}
+
+.carousel-stage .carousel-stage-slide-image picture,
+.carousel-stage .carousel-stage-slide-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-stage .carousel-stage-slide-image img {
+  object-fit: cover;
+}
+
+/* translucent text panel with the soft inset vignette used on rittal.com */
+.carousel-stage .carousel-stage-slide-content {
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 20px;
+  background-color: rgb(0 0 0 / 25%);
+  box-shadow: inset 0 0 200px #000;
+  color: #fff;
+}
+
+.carousel-stage .carousel-stage-slide-content > * {
+  margin: 0;
+}
+
+.carousel-stage .carousel-stage-slide-content h2 {
+  margin-bottom: 20px;
+  color: #fff;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+.carousel-stage .carousel-stage-slide-content h2 + p:not(.button-wrapper) {
+  font-size: 18px;
+  line-height: 24px;
+}
+
+/* eyebrow: a plain paragraph before the slide heading */
+.carousel-stage .carousel-stage-slide-content > p:first-child:not(.button-wrapper) {
+  margin-bottom: 18px;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 24px;
+  text-transform: uppercase;
+}
+
+.carousel-stage .carousel-stage-slide-content .button-wrapper {
+  display: block;
+  margin: 20px 0 0;
+}
+
+.carousel-stage .carousel-stage-slide-content .button {
+  display: flex;
+  width: 100%;
+}
+
+/* controls overlay the bottom of the stage on a dark gradient for contrast */
+.carousel-stage .carousel-stage-controls {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 0 12px;
+  background: linear-gradient(transparent, rgb(0 0 0 / 70%));
+  color: #fff;
+}
+
+.carousel-stage .carousel-stage-indicators {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.carousel-stage .carousel-stage-indicator button {
+  position: relative;
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.carousel-stage .carousel-stage-indicator button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  width: 30px;
+  height: 2px;
+  background-color: rgb(255 255 255 / 45%);
+}
+
+.carousel-stage .carousel-stage-indicator button[aria-current='true']::before {
+  height: 3px;
+  background-color: #fff;
+}
+
+.carousel-stage .carousel-stage-prev,
+.carousel-stage .carousel-stage-next,
+.carousel-stage .carousel-stage-toggle {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.carousel-stage .carousel-stage-prev::after,
+.carousel-stage .carousel-stage-next::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  border: 2px solid currentcolor;
+  border-bottom: 0;
+  border-left: 0;
+  transform: translate(-30%, -50%) rotate(-135deg);
+}
+
+.carousel-stage .carousel-stage-next::after {
+  transform: translate(-70%, -50%) rotate(45deg);
+}
+
+/* pause icon: two bars */
+.carousel-stage .carousel-stage-toggle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 14px;
+  border-inline: 4px solid currentcolor;
+  transform: translate(-50%, -50%);
+}
+
+/* play icon: triangle */
+.carousel-stage .carousel-stage-toggle.paused::after {
+  width: 0;
+  height: 0;
+  border-block: 8px solid transparent;
+  border-inline: 13px solid currentcolor;
+  border-inline-end: 0;
+  transform: translate(-40%, -50%);
+}
+
+.carousel-stage button:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -4px;
+}
+
+.carousel-stage .carousel-stage-slide-content a.button:focus-visible {
+  outline-offset: 2px;
+}
+
+@media (width >= 900px) {
+  .carousel-stage .carousel-stage-slide {
+    align-items: center;
+    min-height: min(900px, max(600px, calc(100svh - var(--nav-height, 64px))));
+    padding-bottom: 0;
+  }
+
+  .carousel-stage .carousel-stage-slide-content {
+    width: 560px;
+    max-width: 50%;
+    padding: 20px;
+  }
+
+  .carousel-stage .carousel-stage-slide-content h2 {
+    font-size: 40px;
+    line-height: 48px;
+  }
+
+  .carousel-stage .carousel-stage-slide-content h2 + p:not(.button-wrapper) {
+    margin-bottom: 10px;
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .carousel-stage .carousel-stage-slide-content > p:first-child:not(.button-wrapper) {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  /* CTAs side by side, 240px each with a 40px gap */
+  .carousel-stage .carousel-stage-slide-content .button-wrapper {
+    display: inline-block;
+    width: 240px;
+    max-width: calc(50% - 20px);
+    vertical-align: top;
+  }
+
+  .carousel-stage .carousel-stage-slide-content .button-wrapper + .button-wrapper {
+    margin-inline-start: 40px;
+  }
+
+  .carousel-stage .carousel-stage-controls {
+    bottom: 60px;
+    padding: 0;
+    background: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel-stage .carousel-stage-slide {
+    transition: none;
+  }
+}
