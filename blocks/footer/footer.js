@@ -8,9 +8,9 @@ const SECTION_NAMES = ['links', 'social', 'copyright'];
  * @returns {Promise<string|null>}
  */
 async function fetchFooter() {
-  // metadata-independent: /content first (local preview), then the root (DA / Edge Delivery)
-  let resp = await fetch('/content/footer.plain.html');
-  if (!resp.ok) resp = await fetch('/footer.plain.html');
+  // local preview serves pages under /content/; DA / Edge Delivery serve the fragment at the root
+  const path = window.location.pathname.startsWith('/content/') ? '/content/footer.plain.html' : '/footer.plain.html';
+  const resp = await fetch(path);
   if (!resp.ok) return null;
   return resp.text();
 }

@@ -11,9 +11,9 @@ const SECTION_NAMES = ['brand', 'meta', 'tools', 'sections', 'search'];
  * @returns {Promise<{html: string, base: string}|null>}
  */
 async function fetchNav() {
-  // metadata-independent: /content first (local preview), then the root (DA / Edge Delivery)
-  let resp = await fetch('/content/nav.plain.html');
-  if (!resp.ok) resp = await fetch('/nav.plain.html');
+  // local preview serves pages under /content/; DA / Edge Delivery serve the fragment at the root
+  const path = window.location.pathname.startsWith('/content/') ? '/content/nav.plain.html' : '/nav.plain.html';
+  const resp = await fetch(path);
   if (!resp.ok) return null;
   return { html: await resp.text(), base: resp.url };
 }
